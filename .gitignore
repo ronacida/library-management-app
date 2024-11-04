@@ -1,0 +1,85 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+out/
+build/
+.cache/
+
+# Temporary files
+*.local
+*.temp
+*.tmp
+*.bak
+*.old
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Editor directories and settings
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.*.local
+
+# Yarn
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Logs and reporting
+*.log
+*.tgz
+yarn-error.log
+yarn-debug.log*
+
+# Miscellaneous
+.eslintcache
+*.lock
+
+# Dependency directories
+jspm_packages/
+
+# IDE specific files
+/.idea/
+*.code-workspace
+
+# JetBrains
+/.idea/

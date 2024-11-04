@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: library-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 789456123Qwer.
+      POSTGRES_DB: libraryDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - library-network
+
+  app:
+    build:
+      context: ./library-management
+      dockerfile: Dockerfile
+    container_name: library-app
+    environment:
+      PORT: 3000
+      CORS_ORIGIN: http://localhost:5173
+      TYPEORM_HOST: db
+      TYPEORM_PORT: 5432
+      TYPEORM_USERNAME: postgres
+      TYPEORM_PASSWORD: 789456123Qwer.
+      TYPEORM_DATABASE: libraryDb
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - library-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  frontend:
+    build:
+      context: ./library-management-frontend
+      dockerfile: Dockerfile
+    container_name: library-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    command: sh -c "until curl -s http://app:3000 > /dev/null; do echo 'Waiting for backend...'; sleep 5; done; npm run dev"
+    depends_on:
+      app:
+        condition: service_healthy  # Waits until 'app' passes healthcheck
+    networks:
+      - library-network
+
+volumes:
+  db-data:
+
+networks:
+  library-network:
