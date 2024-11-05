@@ -6,7 +6,7 @@ services:
     container_name: library-db
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 789456123Qwer.
+      POSTGRES_PASSWORD: your_password
       POSTGRES_DB: libraryDb
     ports:
       - "5432:5432"
@@ -26,7 +26,7 @@ services:
       TYPEORM_HOST: db
       TYPEORM_PORT: 5432
       TYPEORM_USERNAME: postgres
-      TYPEORM_PASSWORD: 789456123Qwer.
+      TYPEORM_PASSWORD: your_password
       TYPEORM_DATABASE: libraryDb
     ports:
       - "3000:3000"
